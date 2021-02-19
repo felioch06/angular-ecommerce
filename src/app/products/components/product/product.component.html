@@ -12,7 +12,7 @@
                     <input type="text" [(ngModel)]="product.name" matInput placeholder="Nombre">
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="full-width">
-                    <input type="text" [(ngModel)]="product.price" matInput placeholder="Precio">
+                    <input type="number" onkeypress='return event.charCode >= 48 && event.charCode <= 57' [(ngModel)]="product.price" matInput placeholder="Precio">
                 </mat-form-field>
             </div>
             <div class="col-md-3 mt-5">
