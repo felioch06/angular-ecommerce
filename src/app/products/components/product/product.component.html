@@ -1,0 +1,99 @@
+
+<div class="mx-6">
+    <mat-card class="my-4">
+        <div class="row">
+            <div class="col-md-3 is-flex is-justify-content-center">
+                <img width="200px" height="200px" src="https://www.audioanimals.co.uk/wp-content/uploads/bb-plugin/cache/Upload-Button-Audio-Animals-3-300x300-circle.png" *ngIf="product.image === '' || !product.image" (click)="openSelectImage()" alt="">
+                <img width="200px" height="200px" [src]="product.image" *ngIf="product.image !== '' && product.image" (click)="openSelectImage()" alt="">
+                <input type="file" (change)="uploadFile($event)" id="img" style="display: none;">
+            </div>
+            <div class="col-md-3 mt-5">
+                <mat-form-field appearance="outline" class="full-width">
+                    <input type="text" [(ngModel)]="product.name" matInput placeholder="Nombre">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width">
+                    <input type="text" [(ngModel)]="product.price" matInput placeholder="Precio">
+                </mat-form-field>
+            </div>
+            <div class="col-md-3 mt-5">
+                <mat-form-field appearance="outline" class="full-width">
+                    <textarea type="text" rows="5" [(ngModel)]="product.description" matInput placeholder="Descripción"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="col-md-3 mt-5">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-select placeholder="Categoría" [(ngModel)]="product.categoryId">
+                      <mat-option *ngFor="let category of categories" [value]="category.value">
+                        {{category.title}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                <button mat-raised-button color="accent" *ngIf="!isUpdate" (click)="createProduct()" class="full-width btn-size mb-5">
+                    Crear
+                </button>
+                <button mat-raised-button color="accent" *ngIf="isUpdate" (click)="updateProduct()" class="full-width btn-size mb-5">
+                    Actualizar
+                </button>
+            </div>
+        </div>
+    </mat-card>
+
+    <table mat-table [dataSource]="products" class="mat-elevation-z1">
+        <!-- Position Column -->
+        
+        <ng-container matColumnDef="idFirebase">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let element"> {{element.idFirebase}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="image">
+          <th mat-header-cell *matHeaderCellDef> Imagen </th>
+          <td mat-cell *matCellDef="let element"> 
+          <img [src]="element.image" class="img-circle" alt="">    
+        </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef> Descripción </th>
+          <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef> Precio </th>
+          <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef> Categoría </th>
+          <td mat-cell *matCellDef="let element"> 
+            <div *ngFor="let category of categories">
+                <p *ngIf="category.value == element.categoryId">
+                    {{category.title}}
+                </p>
+            </div>      
+        </td>
+        </ng-container>
+
+        <ng-container matColumnDef="options">
+          <th mat-header-cell *matHeaderCellDef>  </th>
+          <td mat-cell *matCellDef="let element"> 
+              <div class="is-flex is-justify-content-center">
+                  <button mat-icon-button (click)="deleteProduct(element.idFirebase)" color="warn"><mat-icon>delete</mat-icon></button>      
+                  <button mat-icon-button color="primary" (click)="setUpdate(element)"><mat-icon>update</mat-icon></button>      
+              </div>
+        </td>
+
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+</div>
+  
+  

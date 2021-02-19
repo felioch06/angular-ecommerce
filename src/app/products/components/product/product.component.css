@@ -1,0 +1,17 @@
+table {
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.btn-size{
+    height: 9vh !important;
+}
+
+.img-circle{
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}

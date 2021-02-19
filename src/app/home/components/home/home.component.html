@@ -1,0 +1,26 @@
+<div class="columns is-mobile m-3">
+    <div class="column is-3">
+        <mat-card>
+            <h1 class="is-size-4">Categorías</h1>
+            <hr class="my-2">
+            <ul>
+                <li>
+                    <a (click)="filterProducts('')">Todas</a>
+                </li>
+                <li *ngFor="let category of categories">
+                    <a (click)="filterProducts(category.idFirebase)">{{category.name}}</a>
+                </li>
+                
+            </ul>
+        </mat-card>
+    </div>
+    <div class="column is-9">
+        <div class="container-products" *ngIf="!isFilter">
+            <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
+        </div>
+        <div class="container-products" *ngIf="isFilter">
+            <app-product-card *ngFor="let product of productsFilter" [product]="product"></app-product-card>
+            <p *ngIf="productsFilter.length === 0">No hay productos</p>
+        </div>
+    </div>
+</div>

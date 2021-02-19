@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+    <button routerLink="/shop/home" routerLinkActive="active" mat-button>
+        Inicio
+    </button>
+    <button routerLink="/shop/products" routerLinkActive="active" mat-button>
+        Crear producto
+    </button>
+    <button routerLink="/shop/category" routerLinkActive="active" mat-button>
+        Crear categoría
+    </button>
+
+    <div class="spacer-text">
+        <div *ngIf="(products$ | async) as products">
+
+            <button routerLink="/shop/checkout" [matBadge]="products.length" matBadgePosition="before" matBadgeColor="accent" mat-icon-button>
+                <mat-icon>shop</mat-icon>
+            </button>
+        </div>
+        <button (click)="logout()" mat-icon-button>
+            <mat-icon >logout</mat-icon>
+          </button>
+    </div>
+  </mat-toolbar>

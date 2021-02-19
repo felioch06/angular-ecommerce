@@ -1,0 +1,76 @@
+<div class="row m-6">
+    <div class="col-md-8">
+        <mat-card>
+
+            <h1 class="is-size-2">Datos personales</h1>
+
+            <div class="row">
+                <div class="col-md-6 my-3">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <input type="text" [(ngModel)]="form.fullName" matInput placeholder="Nombre completo">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6 my-3">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <input type="text" [(ngModel)]="form.email" matInput placeholder="Correo electrónico">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <input type="text" [(ngModel)]="form.country" matInput placeholder="Pais">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 my-3">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <input type="text" [(ngModel)]="form.state" matInput placeholder="Estado">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6 my-3">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <input type="text" [(ngModel)]="form.city" matInput placeholder="Ciudad">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <textarea type="text" [(ngModel)]="form.comment" matInput placeholder="Comentario"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+            
+
+        </mat-card>
+    </div>
+    <div class="col-md-4">
+        <mat-card class="px-6" *ngIf="(products$ | async) as products">
+            <mat-card class="py-1 my-3" *ngFor="let product of products">
+                <div class="row is-flex is-align-items-center">
+                    <div class="col-md-3">
+                        <img src="{{product.image}}" class="img-circle" alt="img">
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{product.name}}</p>
+                        <p>{{product.price | currency}}</p>
+                        <p>{{product.quantity}}</p>
+                    </div>
+                    <div class="col-md-3 is-flex is-justify-content-end">
+                        <span>{{product.total | currency}}</span>
+                    </div>
+                </div>
+            </mat-card>
+            
+            <div class="is-flex is-justify-content-space-between">
+                <p>Total</p>
+                <span>{{total | currency}}</span>
+            </div>
+
+            <button class="full-width" mat-raised-button (click)="createOrder()" color="accent">Comprar</button>
+        </mat-card>
+
+    </div>
+</div>

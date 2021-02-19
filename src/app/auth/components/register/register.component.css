@@ -1,0 +1,14 @@
+.bg-img-login {
+    background-image: url("https://i.pinimg.com/originals/60/b7/8c/60b78c323cf1fa5bd875e40e782e1787.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 4px;
+    height: 80vh;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  

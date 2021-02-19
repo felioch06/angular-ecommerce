@@ -1,0 +1,18 @@
+.bg-img-login {
+  background-image: url("https://i.pinimg.com/originals/4c/69/cc/4c69ccd6a5789f4046ea90b55c09d335.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 4px;
+  height: 80vh;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.card-danger{
+  background-color: rgba(255, 0, 0, 0.652);
+  color: white;
+}
+
